@@ -25,6 +25,11 @@ namespace Platformer.Gameplay
             if (willHurtEnemy)
             {
                 var enemyHealth = enemy.GetComponent<Health>();
+                var popup = enemy.GetComponent<Popup>(); 
+                Debug.Log(popup);
+                if (popup != null) { 
+                    popup.Open(); 
+                } 
                 if (enemyHealth != null)
                 {
                     enemyHealth.Decrement();
