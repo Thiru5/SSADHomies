@@ -26,7 +26,6 @@ namespace Platformer.Gameplay
             {
                 var enemyHealth = enemy.GetComponent<Health>();
                 var popup = enemy.GetComponent<Popup>(); 
-                Debug.Log(popup);
                 if (popup != null) { 
                     popup.Open(); 
                 } 

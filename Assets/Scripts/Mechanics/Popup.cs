@@ -8,7 +8,6 @@ public class Popup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("I am alive!");
     }
 
     // Update is called once per frame
@@ -19,9 +18,14 @@ public class Popup : MonoBehaviour
 
     public void Open() { 
         ui.SetActive(true);
+        Debug.Log(ui);
+        // freeze the game
+        Time.timeScale = 0;
     }
 
     public void Close() { 
+        // get input, check, then unfreeze
         ui.SetActive(false);
+        Time.timeScale = 1;
     }
 }
