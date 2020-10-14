@@ -15,7 +15,7 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(Collider2D))]
     public class TokenInstance : MonoBehaviour
     {
-        public GameObject learningText;
+        public GameObject learningText = null;
         public AudioClip tokenCollectAudio;
         [Tooltip("If true, animation will start at a random position in the sequence.")]
         public bool randomAnimationStartTime = false;
@@ -59,8 +59,12 @@ namespace Platformer.Mechanics
                 collected = true;
             //send an event into the gameplay system to perform some behaviour.
             var ev = Schedule<PlayerTokenCollision>();
-            learningText.SetActive(true);
-            Destroy(learningText, 5);
+            
+            // display learning text and destroy it after 3s
+            if (learningText != null) {
+                learningText.SetActive(true);
+                Destroy(learningText, 3);
+            } 
             ev.player = player;
         }
     }
