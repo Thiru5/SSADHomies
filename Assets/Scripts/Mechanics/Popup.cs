@@ -8,6 +8,7 @@ public class Popup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ui.SetActive(false); 
     }
 
     // Update is called once per frame
@@ -20,7 +21,9 @@ public class Popup : MonoBehaviour
         ui.SetActive(true);
         Debug.Log(ui);
         // freeze the game
-        Time.timeScale = 0;
+        if (Time.timeScale > 0) {
+            Time.timeScale = 0;
+        }
     }
 
     public void Close() { 

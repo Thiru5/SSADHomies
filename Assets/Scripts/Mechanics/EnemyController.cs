@@ -14,8 +14,8 @@ namespace Platformer.Mechanics
     {
         public PatrolPath path;
         public AudioClip ouch;
-        public Popup popUp;
 
+        public Health health; 
         internal PatrolPath.Mover mover;
         internal AnimationController control;
         internal Collider2D _collider;
@@ -24,8 +24,8 @@ namespace Platformer.Mechanics
         public Bounds Bounds => _collider.bounds;
 
         void Awake()
-        {
-            popUp = GetComponent<Popup>();
+        {   
+            health = GetComponent<Health>();
             control = GetComponent<AnimationController>();
             _collider = GetComponent<Collider2D>();
             _audio = GetComponent<AudioSource>();
