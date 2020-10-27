@@ -21,7 +21,7 @@ namespace Tests
         }
 
         [Test]
-        public void TestDecrement()
+        public void TestValidDecrement()
         {
             // Use the Assert class to test conditions.
             // Use yield to skip a frame.
@@ -30,16 +30,39 @@ namespace Tests
             health.Decrement();
             Assert.AreEqual(2, health.getHP);
         }
-
+        
         [Test]
-        public void TestIncrement()
+        public void TestInvalidDecrement()
+        {
+            // Use the Assert class to test conditions.
+            // Use yield to skip a frame.
+            var health = new Health();
+            health.Die(); 
+            health.Decrement();
+            Assert.AreEqual(0, health.getHP);
+        }
+        
+        [Test]
+        public void TestInvalidIncrement()
         {
             // Use the Assert class to test conditions.
             // Use yield to skip a frame.
             var health = new Health();
             health.Awake(); 
             health.Increment();
-            Assert.AreEqual(4, health.getHP);
+            Assert.AreEqual(3, health.getHP);
+        }
+
+        [Test]
+        public void TestValidIncrement()
+        {
+            // Use the Assert class to test conditions.
+            // Use yield to skip a frame.
+            var health = new Health();
+            health.Awake();
+            health.Decrement();
+            health.Increment();
+            Assert.AreEqual(3, health.getHP);
         }
 
         [Test]
