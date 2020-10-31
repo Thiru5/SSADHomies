@@ -19,7 +19,6 @@ public class Popup : MonoBehaviour
 
     public void Open() { 
         ui.SetActive(true);
-        Debug.Log(ui);
         // freeze the game
         if (Time.timeScale > 0) {
             Time.timeScale = 0;
