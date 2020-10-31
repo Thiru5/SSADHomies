@@ -7,8 +7,16 @@ using Platformer.Mechanics;
 public class ScoreController : MonoBehaviour
 {
     [SerializeField]
-    private TokenController controller;
+    private TokenController token;
     public TMP_Text token_score;
+    public int _enemy_score = 0;
+
+    public void incrementEnemyScore() { 
+        _enemy_score++;
+        Debug.Log("increased" + _enemy_score);
+    }
+
+    public TMP_Text enemy_score;
     
     // Start is called before the first frame update
     void Start()
@@ -17,8 +25,11 @@ public class ScoreController : MonoBehaviour
     }
 
     // Update is called once per frame
+    // just poll and update
     void Update()
     {
-        token_score.text = controller.getCount.ToString();
+        token_score.text = token.getCount.ToString();
+        enemy_score.text = _enemy_score.ToString();
+        Debug.Log("ewnemy" + _enemy_score);
     }
 }
