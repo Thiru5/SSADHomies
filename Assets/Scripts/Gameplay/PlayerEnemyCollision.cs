@@ -15,6 +15,7 @@ namespace Platformer.Gameplay
     {
         public EnemyController enemy;
         public PlayerController player;
+        public HealthController healthCon;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
@@ -48,9 +49,10 @@ namespace Platformer.Gameplay
             {
                 var playerHealth = player.GetComponent<Health>(); 
                 playerHealth.Decrement(); 
+                var healthCon = player.GetComponent<HealthController>(); 
+                healthCon.LoseLife();
                 Debug.Log(playerHealth.getHP);
                 if (!playerHealth.IsAlive) {
-                    Debug.Log("im die");
                     Schedule<PlayerDeath>();
                 } 
             }

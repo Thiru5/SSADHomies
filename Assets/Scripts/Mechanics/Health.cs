@@ -5,11 +5,15 @@ using static Platformer.Core.Simulation;
 
 namespace Platformer.Mechanics
 {
+    
     /// <summary>
     /// Represebts the current vital statistics of some game entity.
     /// </summary>
     public class Health : MonoBehaviour
     {
+
+        public PlayerController player;
+        
         /// <summary>
         /// The maximum hit points for the entity.
         /// </summary>
@@ -29,9 +33,10 @@ namespace Platformer.Mechanics
         /// </summary>
         public void Increment()
         {
-            currentHP = Mathf.Clamp(currentHP + 1, 0, maxHP);
+            currentHP = Mathf.Clamp(currentHP + 2, 0, maxHP);
+            //add hearts
         }
-
+ 
         /// <summary>
         /// Decrement the HP of the entity. Will trigger a HealthIsZero event when
         /// current HP reaches 0.
@@ -52,6 +57,7 @@ namespace Platformer.Mechanics
         public void Die()
         {
             while (currentHP > 0) Decrement();
+            
         }
 
         void Awake()
