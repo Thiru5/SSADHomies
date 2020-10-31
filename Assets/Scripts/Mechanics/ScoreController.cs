@@ -13,7 +13,6 @@ public class ScoreController : MonoBehaviour
 
     public void incrementEnemyScore() { 
         _enemy_score++;
-        Debug.Log("increased" + _enemy_score);
     }
 
     public TMP_Text enemy_score;
