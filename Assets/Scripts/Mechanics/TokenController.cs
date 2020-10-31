@@ -39,7 +39,7 @@ namespace Platformer.Mechanics
             {
                 tokens[i].tokenIndex = i;
                 tokens[i].controller = this;
-                tokens[i]._learningText = DatabaseConnection.getText(i); 
+                tokens[i]._learningText = DatabaseConnection.GetText(i); 
             }
         }
 

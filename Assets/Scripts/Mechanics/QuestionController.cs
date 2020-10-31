@@ -14,17 +14,17 @@ public class QuestionController : MonoBehaviour
     public string answer {get; set;} 
     void Start()
     {
-        if (question != null && question != "") {
-            _question.text = question;
-        }
-        _question.text = "asdf";
-        answer = "skwe"; 
+        // if (question != null && question != "") {
+        //     _question.text = question;
+        // }
+        // _question.text = "asdf";
+        // answer = "skwe"; 
+        var dp = DatabaseConnection.GetPair();
+        _question.text = dp["status"];
+        answer = dp["value"];
     }
 
     public bool Check() { 
-        Debug.Log((_answer.text + " " + answer));
-        Debug.Log("skwe" == answer);
-        Debug.Log("skwe" == _answer.text);
         return string.Equals(_answer.text, answer); 
     }
 }
