@@ -15,7 +15,6 @@ public static class DatabaseConnection
         // method fetches all questions/answer tuple from database
         questionBank = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(getEndpoint("questions"));
         textBank = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(getEndpoint("tokenText"));
-        Debug.Log(textBank[2]["value"]);
     }
 
     private static string getEndpoint(string endpoint) { 

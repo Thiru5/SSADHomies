@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\Mechanics\QuestionController.cs" />
      <Compile Include="Assets\Scripts\Mechanics\ScoreController.cs" />
      <Compile Include="Assets\Scripts\Mechanics\SpawnPoint.cs" />
+     <Compile Include="Assets\Scripts\Mechanics\TimeManager.cs" />
      <Compile Include="Assets\Scripts\Mechanics\TokenController.cs" />
      <Compile Include="Assets\Scripts\Mechanics\TokenInstance.cs" />
      <Compile Include="Assets\Scripts\Mechanics\VictoryZone.cs" />
@@ -279,11 +280,11 @@
     <Reference Include="UnityEditor">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="System.IO.Compression.FileSystem">
-        <HintPath>C:/Users/chin/MyFirstGame/Library/PackageCache/com.unity.connect.share@2.0.3/Plugins/System.IO.Compression.FileSystem.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json">
         <HintPath>C:/Users/chin/MyFirstGame/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+        <HintPath>C:/Users/chin/MyFirstGame/Library/PackageCache/com.unity.connect.share@2.0.3/Plugins/System.IO.Compression.FileSystem.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.12f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
