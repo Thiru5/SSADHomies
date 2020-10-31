@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
-
+using TMPro;
 
 namespace Platformer.Mechanics
 {
@@ -15,7 +15,9 @@ namespace Platformer.Mechanics
     [RequireComponent(typeof(Collider2D))]
     public class TokenInstance : MonoBehaviour
     {
-        public GameObject learningText = null;
+        public GameObject learningText; 
+
+        public string _learningText {get; set;}  // this is allocated by our controller
         public AudioClip tokenCollectAudio;
         [Tooltip("If true, animation will start at a random position in the sequence.")]
         public bool randomAnimationStartTime = false;
@@ -32,7 +34,6 @@ namespace Platformer.Mechanics
         //active frame in animation, updated by the controller.
         internal int frame = 0;
         internal bool collected = false;
-
         void Awake()
         {
             _renderer = GetComponent<SpriteRenderer>();
@@ -58,14 +59,20 @@ namespace Platformer.Mechanics
             if (controller != null)
                 collected = true;
             //send an event into the gameplay system to perform some behaviour.
-            var ev = Schedule<PlayerTokenCollision>();
+            var ev = Schedule<PlayerTokenCollision>() ;
             
             // display learning text and destroy it after 3s
-            if (learningText != null) {
-                learningText.SetActive(true);
-                Destroy(learningText, 3);
-            } 
+            // learningText.SetActive(true);
+            // Destroy(learningText, 3);
+            displayLearningText();
             ev.player = player;
+        }
+
+        void displayLearningText() {
+            var displayedText = learningText.GetComponent<TMP_Text>(); 
+            displayedText.text = _learningText; 
+            learningText.SetActive(true);
+            Destroy(learningText, 3);
         }
     }
 }

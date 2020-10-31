@@ -31,6 +31,7 @@ namespace Platformer.Mechanics
         {
             //if tokens are empty, find all instances.
             //if tokens are not empty, they've been added at editor time.
+            DatabaseConnection.init();
             if (tokens.Length == 0)
                 FindAllTokensInScene();
             //Register all tokens so they can work with this controller.
@@ -38,6 +39,7 @@ namespace Platformer.Mechanics
             {
                 tokens[i].tokenIndex = i;
                 tokens[i].controller = this;
+                tokens[i]._learningText = DatabaseConnection.GetText(i); 
             }
         }
 

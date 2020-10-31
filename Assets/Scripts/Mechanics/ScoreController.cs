@@ -13,7 +13,6 @@ public class ScoreController : MonoBehaviour
 
     public void incrementEnemyScore() { 
         _enemy_score++;
-        Debug.Log("increased" + _enemy_score);
     }
 
     public TMP_Text enemy_score;
@@ -30,6 +29,5 @@ public class ScoreController : MonoBehaviour
     {
         token_score.text = token.getCount.ToString();
         enemy_score.text = _enemy_score.ToString();
-        Debug.Log("ewnemy" + _enemy_score);
     }
 }
