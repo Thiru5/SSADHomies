@@ -9,26 +9,28 @@ public static class DatabaseConnection
 {
     private static readonly string DBAddr = "https://thequestofthessadhomies.firebaseio.com/";
     private static Dictionary<string, Dictionary<string, string>> questionBank;
-    private static Dictionary<string, string> textBank;
+    private static List<Dictionary<string, string>> textBank;
     // we need to fetch all questions from db and alloc
-    public async static void init() { 
+    public static void init() { 
         // method fetches all questions/answer tuple from database
-        var questionReq = WebRequest.Create(DBAddr + "/questions.json"); // our structure here is dict(str: dict(str, str)) 
-        var response = await questionReq.GetResponseAsync();
+        questionBank = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(getEndpoint("questions"));
+        textBank = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(getEndpoint("tokenText"));
+        Debug.Log(textBank[2]["value"]);
+    }
+
+    private static string getEndpoint(string endpoint) { 
+        var req = WebRequest.Create($"{DBAddr}/{endpoint}.json");
+        var response = req.GetResponse();
         var stream = response.GetResponseStream();
         var reader = new StreamReader(stream);
-        questionBank = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(reader.ReadToEnd());
         response.Close();
-        var textReq = WebRequest.Create(DBAddr + "/tokenText.json"); // our structure here is dict(str: dict(str, str)) 
-        response = await textReq.GetResponseAsync();
-        stream = response.GetResponseStream();
-        reader = new StreamReader(stream);
-        textBank = JsonConvert.DeserializeObject<Dictionary<string, string>>(reader.ReadToEnd());
+        return reader.ReadToEnd(); 
+
     }
 
     // use this to get a question - can change signature to be void -> string if we want to rack within this
     public static string getText(int index) { 
-        return textBank[(index / textBank.Count).ToString()];
+        return textBank[(index % (textBank.Count - 1)) + 1]["value"]; // hacky workaround because first ele null
     }
 
     public static bool isValidUser(string matric, string password) {
