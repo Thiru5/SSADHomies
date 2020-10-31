@@ -25,12 +25,17 @@ namespace Platformer.Gameplay
             if (willHurtEnemy)
             {
                 var enemyHealth = enemy.GetComponent<Health>();
+                var popup = enemy.GetComponent<Popup>(); 
+                if (popup != null) { 
+                    popup.Open(); 
+                } 
                 if (enemyHealth != null)
                 {
                     enemyHealth.Decrement();
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
+                        enemy.scoreController.incrementEnemyScore(); 
                         player.Bounce(2);
                     }
                     else
@@ -41,6 +46,7 @@ namespace Platformer.Gameplay
                 else
                 {
                     Schedule<EnemyDeath>().enemy = enemy;
+                    enemy.scoreController.incrementEnemyScore(); 
                     player.Bounce(2);
                 }
             }
@@ -50,7 +56,6 @@ namespace Platformer.Gameplay
                 playerHealth.Decrement(); 
                 Debug.Log(playerHealth.getHP);
                 if (!playerHealth.IsAlive) {
-                    Debug.Log("im die");
                     Schedule<PlayerDeath>();
                 } 
             }

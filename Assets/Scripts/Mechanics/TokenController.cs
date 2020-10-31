@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 namespace Platformer.Mechanics
 {
@@ -15,8 +16,10 @@ namespace Platformer.Mechanics
         public float frameRate = 12;
         [Tooltip("Instances of tokens which are animated. If empty, token instances are found and loaded at runtime.")]
         public TokenInstance[] tokens;
+        private float nextFrameTime = 0;
+        private int count = 0; 
 
-        float nextFrameTime = 0;
+        public int getCount => count;
 
         [ContextMenu("Find All Tokens")]
         void FindAllTokensInScene()
@@ -41,6 +44,7 @@ namespace Platformer.Mechanics
         void Update()
         {
             //if it's time for the next frame...
+            int collected = 0;
             if (Time.time - nextFrameTime > (1f / frameRate))
             {
                 //update all tokens with the next animation frame.
@@ -55,6 +59,7 @@ namespace Platformer.Mechanics
                         {
                             token.gameObject.SetActive(false);
                             tokens[i] = null;
+                            collected++;
                         }
                         else
                         {
@@ -64,6 +69,7 @@ namespace Platformer.Mechanics
                 }
                 //calculate the time of the next frame.
                 nextFrameTime += 1f / frameRate;
+                count += collected;
             }
         }
 
