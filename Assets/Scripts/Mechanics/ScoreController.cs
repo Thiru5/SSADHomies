@@ -30,6 +30,5 @@ public class ScoreController : MonoBehaviour
     {
         token_score.text = token.getCount.ToString();
         enemy_score.text = _enemy_score.ToString();
-        Debug.Log("ewnemy" + _enemy_score);
     }
 }

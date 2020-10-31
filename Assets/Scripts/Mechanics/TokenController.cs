@@ -29,6 +29,7 @@ namespace Platformer.Mechanics
 
         void Awake()
         {
+            DatabaseConnection.init();
             //if tokens are empty, find all instances.
             //if tokens are not empty, they've been added at editor time.
             if (tokens.Length == 0)
