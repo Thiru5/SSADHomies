@@ -15,9 +15,9 @@ public class Popup : MonoBehaviour
     void Update()
     {
         var controller = ui.GetComponent<QuestionController>();
-        if (TimeManager.isPaused && controller.Check()) {
-            Close();
-        }
+        // if (TimeManager.isPaused && controller.Check()) {
+        //     Close();
+        // }
     }
 
     public void Open() { 
@@ -25,7 +25,7 @@ public class Popup : MonoBehaviour
         // freeze the game
         TimeManager.Pause();
         var controller = ui.GetComponent<QuestionController>();
-        controller.Check();
+        //controller.Check();
     }
 
     public void Close() { 

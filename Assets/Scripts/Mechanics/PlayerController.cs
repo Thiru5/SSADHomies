@@ -33,6 +33,9 @@ namespace Platformer.Mechanics
         /*internal new*/ public AudioSource audioSource;
         public Health health;
         public bool controlEnabled = true;
+        
+        public Joystick joystick;
+
 
         bool jump;
         Vector2 move;
@@ -42,6 +45,8 @@ namespace Platformer.Mechanics
 
         public Bounds Bounds => collider2d.bounds;
 
+        
+
         void Awake()
         {
             health = GetComponent<Health>();
@@ -49,16 +54,22 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+
         }
 
         protected override void Update()
         {
             if (controlEnabled)
             {
-                move.x = Input.GetAxis("Horizontal");
-                if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                // move.x = Input.GetAxis("Horizontal");
+                move.x = joystick.Horizontal;
+
+                float verticalMove = joystick.Vertical;
+                // if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
+                if (jumpState == JumpState.Grounded && verticalMove >= .2f)
                     jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
+                // else if (Input.GetButtonUp("Jump"))
+                else if (verticalMove <= .2f)
                 {
                     stopJump = true;
                     Schedule<PlayerStopJump>().player = this;
