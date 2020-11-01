@@ -11,6 +11,8 @@ public class ScoreController : MonoBehaviour
     public TMP_Text token_score;
     public int _enemy_score = 0;
 
+    public int getScoreCount => _enemy_score;
+
     public void incrementEnemyScore() { 
         _enemy_score++;
     }

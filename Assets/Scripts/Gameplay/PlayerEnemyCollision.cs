@@ -16,6 +16,8 @@ namespace Platformer.Gameplay
         public EnemyController enemy;
         public PlayerController player;
 
+        public ScoreController scoreController;
+
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public override void Execute()

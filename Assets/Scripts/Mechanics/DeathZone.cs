@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
+using Platformer.Mechanics;
+using Platformer.Core;
+using Platformer.Model;
 
 namespace Platformer.Mechanics
 {
@@ -13,7 +16,6 @@ namespace Platformer.Mechanics
     public class DeathZone : MonoBehaviour
     {
 
-        public PlayerController player;
         void OnTriggerEnter2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
@@ -22,8 +24,9 @@ namespace Platformer.Mechanics
                 
                 var ev = Schedule<PlayerEnteredDeathZone>();
                 ev.deathzone = this;
-                var healthCon = player.GetComponent<HealthController>(); 
+                var healthCon = p.GetComponent<HealthController>();
                 healthCon.ImmediateDeath();
+                
             }
         }
     }

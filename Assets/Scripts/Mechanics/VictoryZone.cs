@@ -14,6 +14,8 @@ namespace Platformer.Mechanics
             var p = collider.gameObject.GetComponent<PlayerController>();
             if (p != null)
             {
+                var victory = p.GetComponent<VictoryPopUp>();
+                victory.PopUp();
                 var ev = Schedule<PlayerEnteredVictoryZone>();
                 ev.victoryZone = this;
             }

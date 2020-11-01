@@ -11,8 +11,6 @@ public class HealthController : MonoBehaviour
 
     private readonly int MAX_HP = 3;
 
-    public PlayerController player;
-
     public int livesRemaining;
 
     public void LoseLife(){
@@ -27,7 +25,11 @@ public class HealthController : MonoBehaviour
     }
 
     public void ImmediateDeath(){
-        Reset();
+        livesRemaining = 0;
+        hearts[0].enabled = true;
+        hearts[1].enabled = true;
+        hearts[2].enabled = true;
+        livesRemaining = MAX_HP;
     }
 
     private void Reset() { 
