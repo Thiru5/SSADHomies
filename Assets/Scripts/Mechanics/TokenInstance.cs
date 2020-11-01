@@ -4,6 +4,7 @@ using Platformer.Gameplay;
 using UnityEngine;
 using static Platformer.Core.Simulation;
 using TMPro;
+using System.Threading; 
 
 namespace Platformer.Mechanics
 {
@@ -16,9 +17,6 @@ namespace Platformer.Mechanics
     public class TokenInstance : MonoBehaviour
     {
         public GameObject learningText; 
-
-        [SerializeField] 
-        private int displayTime = 1;
 
         public string _learningText {get; set;}  // this is allocated by our controller
         public AudioClip tokenCollectAudio;
@@ -63,19 +61,7 @@ namespace Platformer.Mechanics
                 collected = true;
             //send an event into the gameplay system to perform some behaviour.
             var ev = Schedule<PlayerTokenCollision>() ;
-            
-            // display learning text and destroy it after 3s
-            // learningText.SetActive(true);
-            // Destroy(learningText, 3);
-            displayLearningText();
             ev.player = player;
-        }
-
-        void displayLearningText() {
-            var displayedText = learningText.GetComponent<TMP_Text>(); 
-            displayedText.text = _learningText; 
-            learningText.SetActive(true);
-            Destroy(learningText, displayTime);
         }
     }
 }

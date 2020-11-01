@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Platformer.Mechanics
 {
@@ -12,6 +14,9 @@ namespace Platformer.Mechanics
     /// </summary>
     public class TokenController : MonoBehaviour
     {
+        [SerializeField] 
+        private int displayTime = 1;
+
         [Tooltip("Frames per second at which tokens are animated.")]
         public float frameRate = 12;
         [Tooltip("Instances of tokens which are animated. If empty, token instances are found and loaded at runtime.")]
@@ -58,9 +63,10 @@ namespace Platformer.Mechanics
                         token._renderer.sprite = token.sprites[token.frame];
                         if (token.collected && token.frame == token.sprites.Length - 1)
                         {
+                            StartCoroutine(displayLearningText(token));
+                            collected++;
                             token.gameObject.SetActive(false);
                             tokens[i] = null;
-                            collected++;
                         }
                         else
                         {
@@ -74,5 +80,13 @@ namespace Platformer.Mechanics
             }
         }
 
+    public IEnumerator displayLearningText(TokenInstance token) {
+            var displayedText = token.learningText.GetComponent<TMP_Text>(); 
+            displayedText.text = token._learningText; 
+            var t = token.learningText;
+            t.SetActive(true);
+            yield return new WaitForSecondsRealtime(displayTime);
+            t.SetActive(false);
+        }
     }
 }

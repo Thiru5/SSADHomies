@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Popup : MonoBehaviour
 {
-    public GameObject ui; 
+    public GameObject ui;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +16,7 @@ public class Popup : MonoBehaviour
     {
         var controller = ui.GetComponent<QuestionController>();
         if (TimeManager.isPaused && controller.Check()) {
-            Close();
+                Close();
         }
     }
 
@@ -24,7 +24,6 @@ public class Popup : MonoBehaviour
         ui.SetActive(true);
         // freeze the game
         TimeManager.Pause();
-        var controller = ui.GetComponent<QuestionController>();
     }
 
     public void Close() { 

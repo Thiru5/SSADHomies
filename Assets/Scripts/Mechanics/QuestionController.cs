@@ -16,8 +16,13 @@ public class QuestionController : MonoBehaviour
     public GameObject options;
     void Start()
     {
+        Assign();
+    }
+    
+    void Assign() { 
         var question = DatabaseConnection.GetPair();
         _question.text = question.question;
+        _answer.text = "";
         answer = question.answer;
         var opt = options.GetComponentsInChildren<TMP_Text>();
         var tmp_options = question.options.Values;
@@ -27,8 +32,11 @@ public class QuestionController : MonoBehaviour
             i++;
         }
     }
-
     public bool Check() { 
-        return string.Equals(_answer.text, answer); 
+        if (string.Equals(_answer.text, answer)) {
+            Assign(); 
+            return true; 
+        }
+        return false; 
     }
 }
