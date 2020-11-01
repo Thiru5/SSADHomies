@@ -5,6 +5,7 @@ using UnityEngine;
 public class Popup : MonoBehaviour
 {
     public GameObject ui;
+    public ScoreController sc;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,10 @@ public class Popup : MonoBehaviour
     void Update()
     {
         var controller = ui.GetComponent<QuestionController>();
-        if (TimeManager.isPaused && controller.Check()) {
+        if (TimeManager.isPaused && Input.GetKeyDown(KeyCode.Return)) {
+                if (controller.Check()) {
+                    sc.incrementEnemyScore();
+                };
                 Close();
         }
     }

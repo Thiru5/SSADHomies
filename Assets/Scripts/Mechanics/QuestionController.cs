@@ -33,10 +33,8 @@ public class QuestionController : MonoBehaviour
         }
     }
     public bool Check() { 
-        if (string.Equals(_answer.text, answer)) {
-            Assign(); 
-            return true; 
-        }
-        return false; 
+        var res = string.Equals(_answer.text, answer);
+        Assign();
+        return res;
     }
 }

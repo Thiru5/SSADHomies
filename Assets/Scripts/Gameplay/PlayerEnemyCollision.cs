@@ -26,6 +26,7 @@ namespace Platformer.Gameplay
             {
                 var enemyHealth = enemy.GetComponent<Health>();
                 var popup = enemy.GetComponent<Popup>(); 
+                popup.sc = enemy.scoreController;
                 if (popup != null) { 
                     popup.Open(); 
                 } 
@@ -47,7 +48,6 @@ namespace Platformer.Gameplay
                     Schedule<EnemyDeath>().enemy = enemy;
                     player.Bounce(2);
                 }
-                enemy.scoreController.incrementEnemyScore(); 
             }
             else
             {
