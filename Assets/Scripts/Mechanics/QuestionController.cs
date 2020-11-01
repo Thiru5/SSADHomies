@@ -12,11 +12,20 @@ public class QuestionController : MonoBehaviour
     // Start is called before the first frame update
     public string question {get; set;} 
     public string answer {get; set;} 
+
+    public GameObject options;
     void Start()
     {
-        var dp = DatabaseConnection.GetPair();
-        _question.text = dp["status"];
-        answer = dp["value"];
+        var question = DatabaseConnection.GetPair();
+        _question.text = question.question;
+        answer = question.answer;
+        var opt = options.GetComponentsInChildren<TMP_Text>();
+        var tmp_options = question.options.Values;
+        int i = 0; 
+        foreach (var kvpair in question.options) { 
+            opt[i].text = kvpair.Value; 
+            i++;
+        }
     }
 
     public bool Check() { 

@@ -17,6 +17,9 @@ namespace Platformer.Mechanics
     {
         public GameObject learningText; 
 
+        [SerializeField] 
+        private int displayTime = 1;
+
         public string _learningText {get; set;}  // this is allocated by our controller
         public AudioClip tokenCollectAudio;
         [Tooltip("If true, animation will start at a random position in the sequence.")]
@@ -72,7 +75,7 @@ namespace Platformer.Mechanics
             var displayedText = learningText.GetComponent<TMP_Text>(); 
             displayedText.text = _learningText; 
             learningText.SetActive(true);
-            Destroy(learningText, 3);
+            Destroy(learningText, displayTime);
         }
     }
 }

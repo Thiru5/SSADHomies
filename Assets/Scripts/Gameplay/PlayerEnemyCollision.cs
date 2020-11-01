@@ -35,7 +35,6 @@ namespace Platformer.Gameplay
                     if (!enemyHealth.IsAlive)
                     {
                         Schedule<EnemyDeath>().enemy = enemy;
-                        enemy.scoreController.incrementEnemyScore(); 
                         player.Bounce(2);
                     }
                     else
@@ -46,9 +45,9 @@ namespace Platformer.Gameplay
                 else
                 {
                     Schedule<EnemyDeath>().enemy = enemy;
-                    enemy.scoreController.incrementEnemyScore(); 
                     player.Bounce(2);
                 }
+                enemy.scoreController.incrementEnemyScore(); 
             }
             else
             {
