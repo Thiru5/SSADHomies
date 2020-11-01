@@ -15,7 +15,6 @@ namespace Platformer.Gameplay
     {
         public EnemyController enemy;
         public PlayerController player;
-        public HealthController healthCon;
 
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
