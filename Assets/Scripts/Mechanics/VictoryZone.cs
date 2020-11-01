@@ -1,5 +1,6 @@
 using Platformer.Gameplay;
 using UnityEngine;
+using System.Collections.Generic;
 using static Platformer.Core.Simulation;
 
 namespace Platformer.Mechanics
@@ -9,6 +10,9 @@ namespace Platformer.Mechanics
     /// </summary>
     public class VictoryZone : MonoBehaviour
     {
+        
+        [SerializeField]
+        private ScoreController sc; // this is not a good way
         void OnTriggerEnter2D(Collider2D collider)
         {
             var p = collider.gameObject.GetComponent<PlayerController>();
@@ -17,6 +21,11 @@ namespace Platformer.Mechanics
                 var ev = Schedule<PlayerEnteredVictoryZone>();
                 ev.victoryZone = this;
             }
+            var userData = new Dictionary<string, string> {
+                {"score", sc._enemy_score.ToString()},
+                {"tokens", sc.token_score.text.ToString()}
+            };
+            DatabaseConnection.SetData(new List<string>{"/statistics/{DatabaseConnection.username}.json"}, userData);
         }
     }
 }

@@ -9,6 +9,7 @@ using Data.Definitions;
 
 public static class DatabaseConnection
 {
+    public static string username {get; set;} // ASSIGN MATRIC HERE AFTER CORRECT LOGIN AND NEVER TOUCH IT AGAIN
     private static readonly string DBAddr = "https://thequestofthessadhomies.firebaseio.com/";
     private static Dictionary<string, Question> questionBank;
     private static Dictionary<string, string> textBank;
