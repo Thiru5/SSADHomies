@@ -14,11 +14,6 @@ public class QuestionController : MonoBehaviour
     public string answer {get; set;} 
     void Start()
     {
-        // if (question != null && question != "") {
-        //     _question.text = question;
-        // }
-        // _question.text = "asdf";
-        // answer = "skwe"; 
         var dp = DatabaseConnection.GetPair();
         _question.text = dp["status"];
         answer = dp["value"];
