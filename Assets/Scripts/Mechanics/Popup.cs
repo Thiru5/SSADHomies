@@ -25,7 +25,6 @@ public class Popup : MonoBehaviour
         // freeze the game
         TimeManager.Pause();
         var controller = ui.GetComponent<QuestionController>();
-        controller.Check();
     }
 
     public void Close() { 
