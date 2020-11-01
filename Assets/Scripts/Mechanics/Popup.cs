@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +25,8 @@ public class Popup : MonoBehaviour
         // freeze the game
         TimeManager.Pause();
         var controller = ui.GetComponent<QuestionController>();
-        //controller.Check();
+        controller.Check();
+
     }
 
     public void Close() { 
