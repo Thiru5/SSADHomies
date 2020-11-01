@@ -33,7 +33,6 @@ namespace Platformer.Mechanics
         public void Increment()
         {
             currentHP = Mathf.Clamp(currentHP + 2, 0, maxHP);
-            //add hearts
         }
  
         /// <summary>

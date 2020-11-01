@@ -27,4 +27,13 @@ public class HealthController : MonoBehaviour
             livesRemaining = livesRemaining + 3;
         }
     }
+
+    public void ImmediateDeath(){
+        livesRemaining = 0;
+        hearts[0].enabled = true;
+        hearts[1].enabled = true;
+        hearts[2].enabled = true;
+        livesRemaining = livesRemaining + 3;
+    }
+
 }
