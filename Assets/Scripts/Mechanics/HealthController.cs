@@ -27,13 +27,4 @@ public class HealthController : MonoBehaviour
             livesRemaining = livesRemaining + 3;
         }
     }
-
-
-    public void Update(){
-        if(Input.GetKeyDown(KeyCode.Return)){
-            LoseLife();
-        }
-
-        
-    }
 }
