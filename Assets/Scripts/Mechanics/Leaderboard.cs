@@ -30,6 +30,6 @@ public class Leaderboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        own_score.text = $"Your Score: enemy: {sc._enemy_score}; tokens: {sc.token_score}";
     }
 }
