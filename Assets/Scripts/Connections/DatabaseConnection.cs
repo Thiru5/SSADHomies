@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.IO; 
 using System;
@@ -13,6 +14,8 @@ public static class DatabaseConnection
     private static readonly string DBAddr = "https://thequestofthessadhomies.firebaseio.com/";
     private static Dictionary<string, Question> questionBank;
     private static Dictionary<string, string> textBank;
+
+    private static Dictionary<string, Dictionary<string, string>> scoreBank; 
     
     private static int count = 1;
     // we need to fetch all questions from db and alloc
@@ -20,6 +23,7 @@ public static class DatabaseConnection
         // method fetches all questions/answer tuple from database
         textBank = JsonConvert.DeserializeObject<Dictionary<string, string>>(getEndpoint("tokenText"));
         questionBank = JsonConvert.DeserializeObject<Dictionary<string, Question>>(getEndpoint("questions"));
+        scoreBank = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(getEndpoint("statistics"));
     }
 
     private static string getEndpoint(string endpoint) { 
@@ -64,5 +68,14 @@ public static class DatabaseConnection
             return false; 
         }
         return userObj["password"] == password;
+    }
+
+    // sort by score then value and return the top 3
+    public static List<Dictionary<string, Dictionary<string, string>>> GetSorted() { 
+        var res = new List<Dictionary<string, Dictionary<string, string>>>();
+        foreach (KeyValuePair<string, Dictionary<string, string>> student in scoreBank.OrderByDescending(key => key.Value["enemies"])) {
+            res.Add(new Dictionary<string, Dictionary<string, string>> {{student.Key, student.Value}});
+        }
+        return res; 
     }
 }

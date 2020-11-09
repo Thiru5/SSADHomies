@@ -17,7 +17,7 @@ public class Popup : MonoBehaviour
     {
         var controller = ui.GetComponent<QuestionController>();
         if (TimeManager.isPaused && Input.GetKeyDown(KeyCode.Return)) {
-                if (controller.Check()) {
+                if (controller != null && controller.Check()) {
                     sc.incrementEnemyScore();
                 };
                 Close();

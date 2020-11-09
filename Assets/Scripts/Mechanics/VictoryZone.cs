@@ -22,7 +22,7 @@ namespace Platformer.Mechanics
                 ev.victoryZone = this;
             }
             var userData = new Dictionary<string, string> {
-                {"score", sc._enemy_score.ToString()},
+                {"enemies", sc._enemy_score.ToString()},
                 {"tokens", sc.token_score.text.ToString()}
             };
             DatabaseConnection.SetData(new List<string>{"/statistics/{DatabaseConnection.username}.json"}, userData);
